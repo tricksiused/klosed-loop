@@ -19,21 +19,6 @@ Your keypair, your EC2 instance, your traffic. No subscription, no third-party p
 
 ---
 
-## Screenshots
-
-<div align="center">
-<img src="assets/screenshots/mission-control.png" alt="Mission Control" width="820"/>
-<br/><sub>Mission Control — launch a VPN node in under two minutes</sub>
-<br/><br/>
-<img src="assets/screenshots/quick-start.png" alt="Quick Start" width="820"/>
-<br/><sub>Quick Start — guided setup from CloudFormation to live credentials</sub>
-<br/><br/>
-<img src="assets/screenshots/settings.png" alt="Settings" width="820"/>
-<br/><sub>Settings — launch defaults and system information</sub>
-</div>
-
----
-
 ## How it compares
 
 | | Commercial VPN | Self-hosted (manual) | **KlosedLoop** |
@@ -142,6 +127,21 @@ Open **Devices** and name each one (e.g. `MacBook`, `iPhone`). You'll get a sepa
 ```
 
 The instance boots Amazon Linux 2023, runs a User Data script that installs `wireguard-tools` and brings up `wg0`, then does nothing else. No SSH access, no management plane, no persistent storage. The security group permits only UDP 51820. Instance metadata is locked to IMDSv2.
+
+---
+
+## Screenshots
+
+<div align="center">
+<img src="assets/screenshots/mission-control.png" alt="Mission Control" width="820"/>
+<br/><sub>Mission Control — launch a VPN node in under two minutes</sub>
+<br/><br/>
+<img src="assets/screenshots/quick-start.png" alt="Quick Start" width="820"/>
+<br/><sub>Quick Start — guided setup from CloudFormation to live credentials</sub>
+<br/><br/>
+<img src="assets/screenshots/settings.png" alt="Settings" width="820"/>
+<br/><sub>Settings — launch defaults and system information</sub>
+</div>
 
 ---
 
