@@ -1,0 +1,84 @@
+<svg width="620" height="180" viewBox="0 0 620 180" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="logoBg" cx="30%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#13102a"/>
+      <stop offset="100%" stop-color="#080813"/>
+    </radialGradient>
+    <linearGradient id="lt" x1="30" y1="90" x2="145" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#d946ef"/>
+    </linearGradient>
+    <linearGradient id="lb" x1="145" y1="90" x2="30" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+    <linearGradient id="wordGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d946ef"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+    <filter id="lg" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="la1" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 0,0.5 L 6,3.5 L 0,6.5 L 2,3.5 Z" fill="#d946ef"/>
+    </marker>
+    <marker id="la2" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 0,0.5 L 6,3.5 L 0,6.5 L 2,3.5 Z" fill="#22d3ee"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="620" height="180" rx="20" fill="url(#logoBg)"/>
+
+  <!-- === ICON (centered in 175px left column) === -->
+  <!-- Orbit track -->
+  <circle cx="88" cy="90" r="55" fill="none" stroke="#ffffff" stroke-width="1"
+          stroke-opacity="0.06" stroke-dasharray="4 8"/>
+
+  <!-- Top arc (indigo→fuchsia) -->
+  <path d="M 36,72 A 55,55 0 0,1 140,72"
+        fill="none" stroke="url(#lt)" stroke-width="7" stroke-linecap="round"
+        filter="url(#lg)" marker-end="url(#la1)"/>
+
+  <!-- Bottom arc (cyan→indigo) -->
+  <path d="M 140,108 A 55,55 0 0,1 36,108"
+        fill="none" stroke="url(#lb)" stroke-width="7" stroke-linecap="round"
+        filter="url(#lg)" marker-end="url(#la2)"/>
+
+  <!-- Gap dots -->
+  <circle cx="143" cy="90" r="2.5" fill="#d946ef" opacity="0.5"/>
+  <circle cx="33" cy="90" r="2.5" fill="#22d3ee" opacity="0.5"/>
+
+  <!-- Shield -->
+  <path d="M 88,57 L 113,70 L 113,94 Q 113,113 88,122 Q 63,113 63,94 L 63,70 Z"
+        fill="#0d0b22" stroke="#5b5bd6" stroke-width="1.5" stroke-opacity="0.9"/>
+
+  <!-- Lock shackle -->
+  <path d="M 81,91 L 81,82 A 7,9 0 0,1 95,82 L 95,91"
+        fill="none" stroke="#d946ef" stroke-width="4.5" stroke-linecap="round" opacity="0.88"/>
+
+  <!-- Lock body -->
+  <rect x="77" y="90" width="22" height="20" rx="4.5" fill="#d946ef" opacity="0.88"/>
+
+  <!-- Keyhole -->
+  <circle cx="88" cy="98" r="3.5" fill="#0d0b22"/>
+  <rect x="86" y="98" width="4" height="7" rx="1.5" fill="#0d0b22"/>
+
+  <!-- === DIVIDER === -->
+  <line x1="172" y1="34" x2="172" y2="146" stroke="#ffffff" stroke-width="1" stroke-opacity="0.1"/>
+
+  <!-- === WORDMARK === -->
+  <text x="196" y="102"
+        font-family="'Segoe UI', 'SF Pro Display', -apple-system, system-ui, sans-serif"
+        font-size="52" font-weight="700" letter-spacing="-1.5"
+        fill="none">
+    <tspan fill="#f1f5f9">Klosed</tspan><tspan fill="url(#wordGrad)">Loop</tspan>
+  </text>
+
+  <!-- Tagline -->
+  <text x="197" y="128"
+        font-family="'Segoe UI', 'SF Pro Display', -apple-system, system-ui, sans-serif"
+        font-size="13.5" font-weight="400" letter-spacing="3"
+        fill="#94a3b8">PRIVATE VPN ON DEMAND</text>
+</svg>

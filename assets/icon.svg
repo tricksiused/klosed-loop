@@ -1,0 +1,84 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg" cx="38%" cy="32%" r="68%" gradientUnits="objectBoundingBox">
+      <stop offset="0%" stop-color="#1a1040"/>
+      <stop offset="100%" stop-color="#07070f"/>
+    </radialGradient>
+    <linearGradient id="topArc" x1="103" y1="229" x2="409" y2="229" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#d946ef"/>
+    </linearGradient>
+    <linearGradient id="botArc" x1="409" y1="283" x2="103" y2="283" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+    <linearGradient id="shieldFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#0d0b22"/>
+    </linearGradient>
+    <linearGradient id="lockFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e879f9"/>
+      <stop offset="100%" stop-color="#a21caf"/>
+    </linearGradient>
+    <filter id="glow1" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow2" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arrFuchsia" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 0,0.5 L 8,4.5 L 0,8.5 L 2.5,4.5 Z" fill="#d946ef"/>
+    </marker>
+    <marker id="arrCyan" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 0,0.5 L 8,4.5 L 0,8.5 L 2.5,4.5 Z" fill="#22d3ee"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="90" fill="url(#bg)"/>
+
+  <!-- Subtle outer ring glow -->
+  <circle cx="256" cy="256" r="205" fill="none" stroke="#4f46e5" stroke-width="1" stroke-opacity="0.12"/>
+
+  <!-- Orbit track (dashed, very dim) -->
+  <circle cx="256" cy="256" r="155" fill="none" stroke="#ffffff" stroke-width="1.5"
+          stroke-opacity="0.06" stroke-dasharray="5 10"/>
+
+  <!-- Top arc: 190° → 350° clockwise (over the top), indigo → fuchsia -->
+  <path d="M 103,229 A 155,155 0 0,1 409,229"
+        fill="none" stroke="url(#topArc)" stroke-width="17" stroke-linecap="round"
+        filter="url(#glow1)" marker-end="url(#arrFuchsia)"/>
+
+  <!-- Bottom arc: 10° → 170° clockwise (under the bottom), cyan → indigo -->
+  <path d="M 409,283 A 155,155 0 0,1 103,283"
+        fill="none" stroke="url(#botArc)" stroke-width="17" stroke-linecap="round"
+        filter="url(#glow2)" marker-end="url(#arrCyan)"/>
+
+  <!-- Gap node dots (connect the visual loop) -->
+  <circle cx="409" cy="256" r="5" fill="#d946ef" opacity="0.5"/>
+  <circle cx="103" cy="256" r="5" fill="#22d3ee" opacity="0.5"/>
+
+  <!-- Shield body -->
+  <path d="M 256,178 L 320,212 L 320,270 Q 320,312 256,334 Q 192,312 192,270 L 192,212 Z"
+        fill="url(#shieldFill)" stroke="#5b5bd6" stroke-width="2" stroke-opacity="0.9"/>
+
+  <!-- Shield inner highlight line -->
+  <path d="M 256,188 L 310,218 L 310,268 Q 310,304 256,322"
+        fill="none" stroke="#818cf8" stroke-width="1" stroke-opacity="0.3"/>
+
+  <!-- Lock shackle -->
+  <path d="M 238,256 L 238,237 A 18,21 0 0,1 274,237 L 274,256"
+        fill="none" stroke="#d946ef" stroke-width="10" stroke-linecap="round" opacity="0.88"/>
+
+  <!-- Lock body -->
+  <rect x="225" y="254" width="62" height="52" rx="11" fill="url(#lockFill)" opacity="0.9"/>
+
+  <!-- Lock keyhole -->
+  <circle cx="256" cy="276" r="9" fill="#0d0b22"/>
+  <rect x="251.5" y="276" width="9" height="17" rx="3" fill="#0d0b22"/>
+
+  <!-- Top accent dot on shield -->
+  <circle cx="256" cy="165" r="5" fill="#6366f1" opacity="0.55"/>
+</svg>

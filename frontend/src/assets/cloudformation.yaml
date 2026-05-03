@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'KlosedLoop: Minimal IAM User Setup'
+
+Resources:
+  KlosedLoopUser:
+    Type: AWS::IAM::User
+    Properties:
+      Policies:
+        - PolicyName: KlosedLoopMinimalAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - ec2:DescribeRegions
+                  - ec2:DescribeImages
+                  - ec2:DescribeInstances
+                  - ec2:DescribeInstanceStatus
+                  - ec2:DescribeSpotPriceHistory
+                  - ec2:DescribeVpcs
+                  - ec2:DescribeSubnets
+                  - ec2:DescribeSecurityGroups
+                  - ec2:CreateSecurityGroup
+                  - ec2:AuthorizeSecurityGroupIngress
+                  - ec2:AuthorizeSecurityGroupEgress
+                  - ec2:RunInstances
+                  - ec2:TerminateInstances
+                  - ec2:CreateTags
+                  - ec2:GetConsoleOutput
+                  - cloudwatch:GetMetricData
+                Resource: '*'
+
+  KlosedLoopAccessKey:
+    Type: AWS::IAM::AccessKey
+    Properties:
+      UserName: !Ref KlosedLoopUser
+
+Outputs:
+  AccessKeyId:
+    Description: 'Access Key ID'
+    Value: !Ref KlosedLoopAccessKey
+  SecretAccessKey:
+    Description: 'Secret Access Key'
+    Value: !GetAtt KlosedLoopAccessKey.SecretAccessKey
