@@ -133,6 +133,7 @@ type DeviceConfig struct {
 // Session holds the active VPN state.
 type Session struct {
 	InstanceID      string
+	InstanceType    string
 	Provider        string
 	Region          string
 	Config          string
@@ -192,6 +193,7 @@ func SaveSession(s Session) error {
 
 	sec := cfg.Section("session")
 	sec.Key("id").SetValue(s.InstanceID)
+	sec.Key("instance_type").SetValue(s.InstanceType)
 	sec.Key("provider").SetValue(s.Provider) // ADDED
 	sec.Key("region").SetValue(s.Region)
 	// Base64 encode config to avoid multiline issues in INI
@@ -233,6 +235,7 @@ func LoadSession() (Session, error) {
 		return Session{}, nil // No active session
 	}
 
+	instanceType := sec.Key("instance_type").String()
 	provider := sec.Key("provider").String() // ADDED
 	region := sec.Key("region").String()
 	configStr := ""
@@ -255,6 +258,7 @@ func LoadSession() (Session, error) {
 
 	return Session{
 		InstanceID:      instanceID,
+		InstanceType:    instanceType,
 		Provider:        provider,
 		Region:          region,
 		Config:          configStr,
