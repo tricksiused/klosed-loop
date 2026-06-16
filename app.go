@@ -272,6 +272,15 @@ func (a *App) Connect(region string, durationMinutes int) (*ConnectionResult, er
 	// Fetch spot price while still outside lock (network call)
 	priceStr, _ := a.activeProvider.GetSpotPrice(a.ctx, region)
 
+	// Fetch instance type dynamically using GetInstanceDetails
+	instanceType := "t3.micro" // Default fallback
+	if err == nil {
+		details, detErr := a.activeProvider.GetInstanceDetails(a.ctx, region, id)
+		if detErr == nil && details != nil && details.InstanceType != "" {
+			instanceType = details.InstanceType
+		}
+	}
+
 	// Re-acquire mutex for all state mutations from here on
 	a.mu.Lock()
 	defer a.mu.Unlock()
@@ -318,6 +327,7 @@ func (a *App) Connect(region string, durationMinutes int) (*ConnectionResult, er
 
 	session := config.Session{
 		InstanceID:      id,
+		InstanceType:    instanceType,
 		Provider:        a.activeCloud,
 		Region:          region,
 		Config:          finalConfigs[0].Config,
@@ -423,11 +433,16 @@ func (a *App) Disconnect() (string, error) {
 	} // Minimum 1 min charge effectively
 	cost := sess.PricePerHour * hours
 
+	instType := sess.InstanceType
+	if instType == "" {
+		instType = "t3.micro"
+	}
+
 	hist := config.HistoryEntry{
 		ID:           sess.InstanceID,
 		Provider:     a.activeCloud,
 		Region:       sess.Region,
-		InstanceType: "t3.micro", // TODO: Store in session if variable
+		InstanceType: instType,
 		PublicIP:     sess.ServerIP,
 		StartTime:    startTime.Format("2006-01-02 15:04:05"),
 		EndTime:      endTime.Format("15:04:05"),
