@@ -92,3 +92,54 @@ func TestMalformedHistory(t *testing.T) {
 		t.Error("Expected empty history on error")
 	}
 }
+
+func TestSessionSaveLoad(t *testing.T) {
+	setupTest(t)
+
+	sess := Session{
+		InstanceID:   "i-1234567890abcdef0",
+		InstanceType: "t3.large",
+		Provider:     "AWS",
+		Region:       "us-west-2",
+		Config:       "dummy-wg-config",
+		ServerIP:     "1.2.3.4",
+		SessionStart: "2026-06-16T18:00:00Z",
+		PricePerHour: 0.012,
+	}
+
+	err := SaveSession(sess)
+	if err != nil {
+		t.Fatalf("Failed to save session: %v", err)
+	}
+
+	loaded, err := LoadSession()
+	if err != nil {
+		t.Fatalf("Failed to load session: %v", err)
+	}
+
+	if loaded.InstanceID != sess.InstanceID {
+		t.Errorf("Expected InstanceID %q, got %q", sess.InstanceID, loaded.InstanceID)
+	}
+	if loaded.InstanceType != sess.InstanceType {
+		t.Errorf("Expected InstanceType %q, got %q", sess.InstanceType, loaded.InstanceType)
+	}
+	if loaded.Provider != sess.Provider {
+		t.Errorf("Expected Provider %q, got %q", sess.Provider, loaded.Provider)
+	}
+	if loaded.Region != sess.Region {
+		t.Errorf("Expected Region %q, got %q", sess.Region, loaded.Region)
+	}
+	if loaded.Config != sess.Config {
+		t.Errorf("Expected Config %q, got %q", sess.Config, loaded.Config)
+	}
+	if loaded.ServerIP != sess.ServerIP {
+		t.Errorf("Expected ServerIP %q, got %q", sess.ServerIP, loaded.ServerIP)
+	}
+	if loaded.SessionStart != sess.SessionStart {
+		t.Errorf("Expected SessionStart %q, got %q", sess.SessionStart, loaded.SessionStart)
+	}
+	if loaded.PricePerHour != sess.PricePerHour {
+		t.Errorf("Expected PricePerHour %f, got %f", sess.PricePerHour, loaded.PricePerHour)
+	}
+}
+
